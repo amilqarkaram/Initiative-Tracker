@@ -69,7 +69,7 @@ function CharacterEngine(props){
    if(charName === ""){
      charName="nobody";
    }
-   axios.get("/apit/" + charName)
+   axios.get("https://initiative-tracker-5e.herokuapp.com/api/" + charName)
    .then(function(response){
      getInfo(response.data).then(function(){
        props.saveMonsterInfo(response.data);
