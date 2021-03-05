@@ -19,7 +19,7 @@ app.use(cors());
 app.use(bodyparser.json());
 app.use(express.static(path.join(__dirname, "client", "build")));
 const Monster = mongoose.model("monster", monsterSchema);
-app.get("/", function(req, res) {
+app.get("https://initiative-tracker-5e.herokuapp.com/", function(req, res) {
   Monster.find(function(err,data){
     if(err){console.log("there was an error in finding the names")}
     else{
@@ -32,7 +32,7 @@ app.get("/", function(req, res) {
     }
   });
 });
-app.get("/:name", function(req, res) {
+app.get("https://initiative-tracker-5e.herokuapp.com/:name", function(req, res) {
   let info ={};
   Monster.findOne({name:req.params.name},function(err,monster){
     if(err){

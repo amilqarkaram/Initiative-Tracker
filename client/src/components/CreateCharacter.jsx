@@ -22,7 +22,7 @@ React.useEffect(function(){
     });
     return info;
   }
-  axios.get("/").then(function(response){
+  axios.get("https://initiative-tracker-5e.herokuapp.com/").then(function(response){
     getInfo(response).then(function(){
       console.log(response.data);
       setState(function(currentState){
@@ -45,7 +45,7 @@ function handleDropdownClick(value){
     let info = await monsterMachine;
     return info;
   }
-  axios.get("/" + value)
+  axios.get("https://initiative-tracker-5e.herokuapp.com/" + value)
   .then(function(response){
     getInfo(response.data).then(function(){
       props.saveMonsterInfo(response.data);
