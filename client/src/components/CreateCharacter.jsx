@@ -22,7 +22,7 @@ React.useEffect(function(){
     });
     return info;
   }
-  axios.get("http://localhost:4000/").then(function(response){
+  axios.get("/").then(function(response){
     getInfo(response).then(function(){
       console.log(response.data);
       setState(function(currentState){
@@ -45,7 +45,7 @@ function handleDropdownClick(value){
     let info = await monsterMachine;
     return info;
   }
-  axios.get("http://localhost:4000/" + value)
+  axios.get("/" + value)
   .then(function(response){
     getInfo(response.data).then(function(){
       props.saveMonsterInfo(response.data);

@@ -69,7 +69,7 @@ function CharacterEngine(props){
    if(charName === ""){
      charName="nobody";
    }
-   axios.get("http://localhost:4000/" + charName)
+   axios.get("/" + charName)
    .then(function(response){
      getInfo(response.data).then(function(){
        props.saveMonsterInfo(response.data);
