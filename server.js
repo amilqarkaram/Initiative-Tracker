@@ -10,7 +10,7 @@ const mongoose = require("mongoose");
 const monsterSchema = require('./mongooseSchemas/monsterSchema');
 const path = require("path")
 mongoose.connect(
-  process.env.MONGODB_URI,
+  "mongodb+srv://admin-amilqar:123hurBnomC@cluster0.rmpoy.mongodb.net/DND5eMonstersDB",
   { useNewUrlParser: true, useUnifiedTopology: true }
 );
 //initailizing middleware
