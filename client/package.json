@@ -31,7 +31,7 @@
     "eject": "react-scripts eject",
     "server": "node server.js",
     "graphQLAPI": "(cd graphQLMonsters/dnd-monster-api && npm run start)",
-    "client": "npm start",
+    "client": "cd client && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "proxy": "http://localhost:4000",
