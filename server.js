@@ -23,7 +23,10 @@ console.log("in server")
 app.get("/api/", function(req, res) {
   console.log('inside get request');
   Monster.find(function(err,data){
-    if(err){console.log("there was an error in finding the names")}
+    if(err){
+      console.log("there was an error in finding the names: " + err)
+      res.send(err);
+    }
     else{
       let monsterNames = [];
       for (let i = 0; i < data.length; ++i) {
