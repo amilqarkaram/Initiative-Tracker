@@ -19,7 +19,9 @@ app.use(cors());
 app.use(bodyparser.json());
 app.use(express.static(path.join(__dirname, "client", "build")));
 const Monster = mongoose.model("monster", monsterSchema);
-app.get("https://initiative-tracker-5e.herokuapp.com/api", function(req, res) {
+console.log("in server")
+app.get("https://initiative-tracker-5e.herokuapp.com/api/", function(req, res) {
+  console.log('inside get request');
   Monster.find(function(err,data){
     if(err){console.log("there was an error in finding the names")}
     else{
@@ -55,6 +57,7 @@ app.get("https://initiative-tracker-5e.herokuapp.com/api/:name", function(req, r
 
 // Express only serves static assets in production
 app.get("*", (req, res) => {
+  console.log("ONLY the astrerix get request point is reached");
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
 const PORT = process.env.PORT || 4000;
