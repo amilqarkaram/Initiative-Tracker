@@ -36,12 +36,16 @@ function App() {
         if (event.keyCode === 39 && !/INPUT|TEXTAREA|SELECT|BUTTON/.test(event.target.nodeName)) {
             event.preventDefault();
             // force triggers a click on the button
-            document.querySelector(".runButton").click();
+            if(document.querySelector(".runButton")){
+              document.querySelector(".runButton").click();
+            }
         }
         if (event.keyCode === 37 && !/INPUT|TEXTAREA|SELECT|BUTTON/.test(event.target.nodeName)) {
             event.preventDefault();
             // force triggers a click on the button
-            document.querySelector(".backButton").click();
+            if(document.querySelector(".backButton")){
+              document.querySelector(".backButton").click();
+            }
         }
         if (event.keyCode === 82 && !/INPUT|TEXTAREA|SELECT|BUTTON/.test(event.target.nodeName)) {
             event.preventDefault();
@@ -52,7 +56,6 @@ function App() {
     // assigns event listener to document
     document.addEventListener("keyup", handlePress);
     window.addEventListener('resize', handleResize);
-    console.log("helo")
     //cleanup event listeners
     return _ => {
       document.removeEventListener('keyup', handlePress);
@@ -145,8 +148,8 @@ function App() {
       }
     });
   }
-  return ( <
-    div className = " App" >
+  return (
+    <div className = " App" >
     <Header windowWidth={state.windowWidth}/ >
     <div className = "monsterCard" >
     {state.currentMonsterName === "not a monster" ?

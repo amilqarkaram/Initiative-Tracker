@@ -103,7 +103,18 @@ width:100%;
 padding-top: .8%;
 font-family: 'Langar', cursive;
 }
-
+.devStage{
+  font-family: 'Indie Flower', cursive;
+  display: inline;
+  color: red;
+  font-size: 70%;
+  font-weight: bolder;
+}
+.headerIcon{
+   font-size: 50px;
+   float: left;
+   padding: 5px;
+}
 /* Character Card */
 img.profile-pic{
   border-radius:50%;
@@ -184,6 +195,9 @@ div::-webkit-scrollbar-track-piece:start {
 }
 .dieIcon:hover{
   color:#F5E5C9;
+}
+.dieIcon{
+  font-size: 180px;
 }
 /* The animation code */
 @keyframes dice {

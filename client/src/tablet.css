@@ -1,7 +1,4 @@
 @media only screen and (max-width: 1007px) and (min-width: 641px){
-  .headerIcon{
-    fontSize: 1000px;
-  }
   /* character card */
   .areaCard {
     font-family: 'Langar', cursive;
@@ -111,13 +108,13 @@
   /* Header Component */
   .header{
     background-color: #F5E5C9;
-    height: 14vh;
+    height: 11vh;
   }
   .innerHeader{
-  height: 100%;
-  width:100%;
-  font-family: 'Langar', cursive;
-  text-align: center;
+    height: 100%;
+    width:100%;
+    font-family: 'Langar', cursive;
+    text-align: center;
   }
   .headerTextStyle{
     position: absolute;
@@ -126,6 +123,16 @@
     right:0;
     left:0;
     margin: auto;
+  }
+  .headerIcon{
+    font-size: 500px;
+    float: none;
+    position: absolute;
+    right: 120vh;
+    visibility: hidden;
+  }
+  .dieIcon{
+    font-size: 65px;
   }
   /* Die */
   .RightCol{
@@ -154,9 +161,6 @@
   }
 }
 @media only screen and (max-width: 1007px) and (min-width: 641px) and (min-height: 700px){
-  .headerIcon{
-    fontSize: 1000px;
-  }
   /* character card */
   .areaCard {
     font-family: 'Langar', cursive;
@@ -266,7 +270,7 @@
   /* Header Component */
   .header{
     background-color: #F5E5C9;
-    height: 7vh;
+    height: 11vh;
   }
   .innerHeader{
   height: 100%;

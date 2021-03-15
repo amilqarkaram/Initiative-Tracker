@@ -1,8 +1,10 @@
 import React from "react"
 import Icon from '@material-ui/core/Icon'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core';
 import { faDiceD20 } from '@fortawesome/free-solid-svg-icons'
 import Fab from "@material-ui/core/Fab";
+library.add(faDiceD20);
 
 function DiceRoll(props){
   function handleMouseOver(event){
@@ -37,16 +39,10 @@ function DiceRoll(props){
   }
   setTimeout(createNumber,1000);
   }
-  const iconStyle ={
-    fontSize:180
-  }
-  if(props.windowWidth > 641 && props.windowWidth < 1007){
-    iconStyle.fontSize = 65;
-  }
 return(
   <div className="die">
   <button onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} type="button" id= "roll" onClick={handleClick}>
-  <FontAwesomeIcon className="center dieIcon" style={iconStyle} icon={faDiceD20}/>
+  <FontAwesomeIcon icon={['fas', 'dice-d20']} className="center dieIcon"/>
       <h1 id="result" className="twoDigit"></h1>
   </button>
   </div>
