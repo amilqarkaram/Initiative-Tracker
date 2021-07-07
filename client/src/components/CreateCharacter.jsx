@@ -3,6 +3,7 @@ import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
 import axios from "axios"
 import DropdownMenu from "./Dropdown"
+import dispatchers from "../utils/dispatchers"
 function CreateCharacter(props){
 const [state,setState] = React.useState({
   textInput: "",
@@ -34,6 +35,26 @@ React.useEffect(function(){
     });
   });
 },[]);
+
+// handles pressing the enter key
+React.useEffect(function(){
+  let textarea = document.querySelector(".inputArea");
+  function handlePress(event){
+      // enter key
+      if (event.keyCode === 13) {
+          event.preventDefault();
+          // force triggers a click on the button
+          document.querySelector(".addButton").click();
+      }
+  }
+  // assigns event listener to textarea
+  textarea.addEventListener("keyup", handlePress);
+  //cleanup event listeners
+  return _ => {
+    textarea.removeEventListener('keyup', handlePress)
+  }
+});
+
 function handleDropdownClick(value){
   setState(function(currentState){
     return{
@@ -48,7 +69,7 @@ function handleDropdownClick(value){
   axios.get("/api/" + value)
   .then(function(response){
     getInfo(response.data).then(function(){
-      props.saveMonsterInfo(response.data);
+      dispatchers.AddAndDisplayInfoCard(response.data);
     });
   });
   //finally, focus back on input
@@ -113,7 +134,7 @@ function handleClick(event){
     }
   }
   // passes input back to a function defined in the character engine
-  props.saveInfo(charName, charInitiative);
+  dispatchers.AddInfo(charName, charInitiative, "");
   setState((currentState)=>{
     return{
       ...currentState,
@@ -121,24 +142,7 @@ function handleClick(event){
     }
   });
 }
-// handles pressing the enter key
-React.useEffect(function(){
-  let textarea = document.querySelector("textarea");
-  function handlePress(event){
-      // enter key
-      if (event.keyCode === 13) {
-          event.preventDefault();
-          // force triggers a click on the button
-          document.querySelector(".addButton").click();
-      }
-  }
-  // assigns event listener to textarea
-  textarea.addEventListener("keyup", handlePress);
-  //cleanup event listeners
-  return _ => {
-    textarea.removeEventListener('keyup', handlePress)
-  }
-});
+
 const iconStyle= {
 }
 return(
@@ -156,7 +160,7 @@ return(
   <Fab onClick={handleClick} className="addButton">
   <AddIcon/>
   </Fab>
-  <DropdownMenu handleDropdownClick={handleDropdownClick}searchItems={state.dropdownMonsters}/>
+  <DropdownMenu handleDropdownClick={handleDropdownClick} searchItems={state.dropdownMonsters}/>
   </div>
 );
 }

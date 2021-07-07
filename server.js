@@ -24,11 +24,12 @@ app.use(express.static(path.join(__dirname, "client", "build")));
 const Monster = mongoose.model("monster", monsterSchema);
 const User = mongoose.model("user",userSchema);
 console.log("in server")
+
 app.get("/api/", function(req, res) {
-  console.log('inside get request');
+
   Monster.find(function(err,data){
+
     if(err){
-      console.log("there was an error in finding the names: " + err)
       res.send(err);
     }
     else{
@@ -36,16 +37,16 @@ app.get("/api/", function(req, res) {
       for (let i = 0; i < data.length; ++i) {
         monsterNames.push(data[i].name);
       }
-      console.log(util.inspect(data, false, null));
       res.json(monsterNames);
     }
   });
 });
+
 app.get("/api/:name", function(req, res) {
   let info ={};
   Monster.findOne({name:req.params.name},function(err,monster){
     if(err){
-      console.log("monster can't be found from dnd5eapi");
+      console.log("argere");
       info.status = { isAMonster: false, characterName: req.params.name };
     }
     else{
@@ -54,6 +55,9 @@ app.get("/api/:name", function(req, res) {
         info.status = { isAMonster: true, characterName: req.params.name };
      }
      else{
+       console.log("argggg");
+       console.log("monster: " + monster);
+       console.log("info givent: " + util.inspect(req.params,{showHidden: false, depth: null}))
        info.status = { isAMonster: false, characterName: req.params.name };
      }
       console.log(info);
@@ -61,8 +65,14 @@ app.get("/api/:name", function(req, res) {
     }
   })
 });
+
 app.post("/api/save",function(req, res){
   const { token, cards }  = req.body
+    console.log("save-TOKEN:" + token);
+    if(!token){
+      console.log("NO SAVE-TOKEN")
+      res.json("no-data");
+    }
   client.verifyIdToken({
     idToken: token,
     audience: "669290193365-6a99rv1tr3a7cuqjjc940n1c0uru49o5.apps.googleusercontent.com"
@@ -77,8 +87,14 @@ app.post("/api/save",function(req, res){
     });
   })
 })
+
 app.post("/api/retrieve",function(req, res){
   const { token, cards }  = req.body
+  console.log("retrieve-TOKEN:" + token);
+  if(!token){
+    console.log("NO RETREIVE-TOKEN");
+    res.json("no-data");
+  }
   client.verifyIdToken({
     idToken: token,
     audience: "669290193365-6a99rv1tr3a7cuqjjc940n1c0uru49o5.apps.googleusercontent.com"
@@ -94,10 +110,10 @@ app.post("/api/retrieve",function(req, res){
   })
 })
 // Express only serves static assets in production
-app.get("*", (req, res) => {
-  console.log("ONLY the astrerix get request point is reached");
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
+// app.get("*", (req, res) => {
+//   console.log("ONLY the astrerix get request point is reached");
+//     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+// });
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, function() {
   console.log(`Server listening on port ${PORT}.`);

@@ -1,5 +1,6 @@
 import React from "react";
-
+import dispatchers from '../utils/dispatchers'
+import {useSelector} from 'react-redux'
 function Player(props){
   const divStyle = {
     overflowY: "scroll",
@@ -16,16 +17,36 @@ function Player(props){
     textAlign: "center",
     fontFamily: "font-family: 'Langar', cursive;"
   };
+    const {currentPlayerName, characterInfo} = useSelector(state => state);
+
+  function handleChange(event){
+    let info = {
+      notes: event.target.value,
+      status: {isAMonster: false, characterName: currentPlayerName}
+    }
+    dispatchers.AddAndDisplayInfoCard(info);
+  }
   return(
   <div>
-  {props.info !== "not a player" ?
+  {currentPlayerName !== "not a player" ?
   <div style={divStyle}>
-  <h1>{props.info !== "nobody" ? props.info:''}</h1>
+  <h1>{ currentPlayerName !== "nobody" ? currentPlayerName : '' }</h1>
   <img
   className="playerImage"
   src="images/man-profile-cartoon_18591-58482.jpg"
   alt="Profile Pic"
   />
+  <textarea
+   id="playerNoteArea"
+   name="playerNoteArea"
+   cols="30"
+   rows="10"
+   className="playerNotes"
+   placeholder="Take Notes Here"
+   onChange={handleChange}
+   value = {characterInfo[currentPlayerName] ? characterInfo[currentPlayerName] : ""}
+   >
+   </textarea>
   </div>
    :
   ""}

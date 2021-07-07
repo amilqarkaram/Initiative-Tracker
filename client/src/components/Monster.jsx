@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from 'react-redux'
 
 function Monster(props) {
   const divStyle = {
@@ -14,7 +15,9 @@ function Monster(props) {
     boxShadow: "1px 1px 3px black",
     marginTop: "30px"
   };
-  let info = props.info;
+
+  let info = useSelector(state => state.characterInfo[state.currentMonsterName]);
+
   console.log(info);
   return (
     <div className="monster">

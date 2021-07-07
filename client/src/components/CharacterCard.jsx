@@ -4,18 +4,21 @@ import Fab from "@material-ui/core/Fab";
 import Cursor from "./Cursor";
 import TrashIcon from '@material-ui/icons/Delete';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import {useSelector} from 'react-redux'
+import dispatchers from '../utils/dispatchers'
+import {handleClick} from '../utils/ClickHandler'
 function CharacterCard(props){
+  let {count} = useSelector(state => state);
   const[state,setState] = React.useState({
-    index: props.index,
-    count: props.count
+    index: props.index
   });
   //any time the monstercard rerenders(when count changes), the state will be changed accordingly
   React.useEffect(function(){
-    setState({index: props.index, count: props.count});
+    setState({index: props.index});
     console.log("character card rendered" );
-  },[props.index,props.count]);
+  },[props.index]);
   function handleTrashClick(){
-    props.deleteInfo(props.card.charName,props.card.charInitiative);
+    dispatchers.DeleteInfo(props.card.charName,props.card.charInitiative);
   }
   return(
     <div
@@ -26,18 +29,18 @@ function CharacterCard(props){
     <div>
     <img
     className="profile-pic"
-    onClick = {props.handleClick}
+    onClick = {handleClick}
     src="images/man-profile-cartoon_18591-58482.jpg"
     alt="Profile Pic"
     data-id={props.card.charName}
     data-initiative={props.card.charInitiative}
     />
     </div>
-    <div onClick = {props.handleClick} className="areaText">
-    <p onClick = {props.handleClick} data-id={props.card.charName}>Name: {props.card.charName} <br/>
+    <div onClick = {handleClick} className="areaText">
+    <p onClick = {handleClick} data-id={props.card.charName}>Name: {props.card.charName} <br/>
     Initiative: {props.card.charInitiative}</p>
     </div>
-    {state.index === (props.count - 1) ? <ArrowBackIcon
+    {state.index === (count - 1) ? <ArrowBackIcon
       style={{position:"absolute",right:"0",margin:"auto", top: "0", bottom:"30"}}
       color="black"
       fontSize="large"/> : ""}
