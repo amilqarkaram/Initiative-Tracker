@@ -93,10 +93,6 @@ button.backButton{
   right: 60vw;
 }
 /* Header Component */
-.header{
-  background-color: #F5E5C9;
-  height: 10vh;
-}
 .innerHeader{
 height: 100%;
 width:100%;
@@ -343,6 +339,13 @@ border-radius: 80%;
 position:absolute;
 right:0;
 margin:auto;
+}
+
+/* google */
+.googleAuth{
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 /* Responsiveness */
 

@@ -29,6 +29,7 @@ function App() {
   return (
     <div className = " App" >
     <Header windowWidth={storeState.windowWidth}/ >
+    <div className = "googleAuth">
     <GoogleLogin
      clientId={"669290193365-6a99rv1tr3a7cuqjjc940n1c0uru49o5.apps.googleusercontent.com"}
      buttonText="Save with Google"
@@ -43,6 +44,7 @@ function App() {
       onFailure={function(event){handleGoogleRetrieve(event, storeState)}}
       cookiePolicy={'single_host_origin'}
       />
+      </div>
     <div className = "monsterCard" >
     {storeState.currentMonsterName === "not a monster" ?
       < PlayerCard/>

@@ -1,6 +1,7 @@
 import store from '../store.js'
 import actions from './Actions.js'
 
+//Displays an Existing Monster or Character's info
 function DisplayInfoCard(characterName){
 
 const state = store.getState();
@@ -20,7 +21,7 @@ const state = store.getState();
      store.dispatch(actions.UpdatePlayerInfoCard(characterName));
   }
 }
-
+//Instantaite new info card and dispaly it
 function AddAndDisplayInfoCard(info){
 
 const state = store.getState();
@@ -41,17 +42,20 @@ const state = store.getState();
 
   }
 }
+//add smaller initiative card and display it
 function AddInfo(charName,charInitiative, info = ""){
 
   store.dispatch(actions.AddCharacterCardAndDisplayInfoCard(charName, charInitiative, info))
 
 }
+
 function DeleteInfo(charName, charInitiative){
 
   store.dispatch(actions.RemoveCharacterCard(charName, charInitiative));
   store.dispatch(actions.RemoveInfoCard());
 
 }
+
 function ChangeCount(count = 0,type = null){
   if(type == null){
       store.dispatch(actions.ChangeCount(count));
@@ -64,6 +68,7 @@ function ChangeCount(count = 0,type = null){
   }
 
 }
+
 function DeleteAll(){
   store.dispatch(actions.DeleteAll());
 }
