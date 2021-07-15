@@ -347,6 +347,92 @@ margin:auto;
   right: 0;
   bottom: 0;
 }
+
+/* HPBubble */
+
+.HPBubble{
+  background-color: #F5E5C9;
+  border-color: black;
+  border: 2px;
+  border-style: solid;
+  border-radius: 20%;
+  width: 50px;
+  height: 80px;
+  position: relative;
+  left: 63%;;
+  margin-left: 40%;
+  top: 0%;
+  border-color: red;
+}
+.upArrow{
+  position:absolute;
+  right: 0;
+  left: 0;
+  margin: auto;
+  bottom: 55px;
+  font-size: 20px;
+}
+.downArrow{
+  position:absolute;
+  right: 0;
+  left: 0;
+  margin: auto;
+  top: 55px;
+  font-size: 20px;
+}
+.threeDigit{
+  background: transparent;
+  position: absolute;
+  top: 22px;
+  right: 0;
+  left: 0;
+  margin:auto;
+  resize: none;
+  border: none;
+  font-family: 'Langar', cursive;
+  width: 30px;
+
+}
+
+.twoDigit{
+  background: transparent;
+  position: absolute;
+  top: 22px;
+  right: 0;
+  left: 0;
+  margin:auto;
+  resize: none;
+  border: none;
+  font-family: 'Langar', cursive;
+  width: 100px;
+}
+.inputStyle{
+  background: transparent;
+  position: absolute;
+  top: 22px;
+  right: 0;
+  left: 0;
+  margin:auto;
+  resize: none;
+  border: none;
+  font-family: 'Langar', cursive;
+  width: 12px;
+}
+
+.ACBubble{
+  background-color: #F5E5C9;
+  border-color: black;
+  border: 2px;
+  border-style: solid;
+  border-radius: 20%;
+  width: 50px;
+  height: 80px;
+  position: relative;
+  left: 78%;;
+  margin-left: 40%;
+  bottom: 108%;
+  border-color: blue;
+}
 /* Responsiveness */
 
 /* @media only screen and (max-width: 1200px) {
