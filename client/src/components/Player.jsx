@@ -44,7 +44,7 @@ function Player(props){
    className="playerNotes"
    placeholder="Take Notes Here"
    onChange={handleChange}
-   value = {characterInfo[currentPlayerName] ? characterInfo[currentPlayerName] : ""}
+   value = {characterInfo[currentPlayerName] ? characterInfo[currentPlayerName].notes : ""}
    >
    </textarea>
   </div>

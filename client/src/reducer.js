@@ -6,7 +6,7 @@ const initialState = {
   currentPlayerInfo: "",
   windowWidth: window.innerWidth,
   cards: [],
-  count: 0
+  count: 0,
 }
 
 export default function appReducer(state = initialState, action){
@@ -32,7 +32,10 @@ export default function appReducer(state = initialState, action){
         currentPlayerName: action.payload.currentPlayerName,
         monsterNames: [...state.monsterNames, action.payload.additionalInfo.name],
         characterInfo: {...state.characterInfo,
-                          [action.payload.currentMonsterName]: action.payload.additionalInfo
+                          [action.payload.currentMonsterName]: {
+                            ...state.characterInfo[action.payload.currentMonsterName],
+                            notes: action.payload.additionalInfo
+                          }
                       }
       }
     }
@@ -49,7 +52,10 @@ export default function appReducer(state = initialState, action){
         currentPlayerName: action.payload.currentPlayerName,
         currentMonsterName: action.payload.currentMonsterName,
         characterInfo: {...state.characterInfo,
-                          [action.payload.currentPlayerName]: action.payload.notes ? action.payload.notes : ""
+                          [action.payload.currentPlayerName]: {
+                            ...state.characterInfo[action.payload.currentPlayerName],
+                            notes: action.payload.notes ? action.payload.notes : ""
+                          }
                       },
         cards: [...filteredCards]
       }
@@ -61,7 +67,9 @@ export default function appReducer(state = initialState, action){
       let charName = action.payload.charName;
       let charInitiative = action.payload.charInitiative;
       let charInfo = action.payload.charInfo;
-      tempArray.push({charName,charInitiative,charInfo});
+      let charHP = action.payload.hp;
+      let charAC = action.payload.ac;
+      tempArray.push({charName,charInitiative,charInfo, charHP, charAC});
       //sorted in ascending order by initiative
       tempArray.sort(function(a, b){return b.charInitiative - a.charInitiative})
       return{
@@ -69,9 +77,14 @@ export default function appReducer(state = initialState, action){
         cards: [...tempArray],
         count: 0,
         characterInfo: {...state.characterInfo,
-                          [action.payload.currentPlayerName]: charInfo ? charInfo : ""
-      }
-    }
+                          [action.payload.currentPlayerName]: {
+                            ...state.characterInfo[action.payload.currentPlayerName],
+                            notes: charInfo ? charInfo : "",
+                            hp: charHP ? charHP : "0",
+                            ac: charAC ? charAC : "0"
+                          }
+                        }
+            }
     }
     case 'Card/RemoveInfoCard' : {
       return{
@@ -97,6 +110,40 @@ export default function appReducer(state = initialState, action){
           cards: filteredCards,
           count: 0
         }
+      }
+    }
+    case 'Card/AddHP':{
+      let filteredCards = [...state.cards];
+      filteredCards.forEach(function(card){
+        if(card.charName === action.payload.charName){
+          card.charHP = action.payload.hp;
+        }
+      })
+      return{
+        ...state,
+        characterInfo: {...state.characterInfo,
+                          [action.payload.charName]: {
+                            ...state.characterInfo[action.payload.charName],
+                            hp: action.payload.hp
+                          }
+                        }
+      }
+    }
+    case 'Card/AddAC':{
+      let filteredCards = [...state.cards];
+      filteredCards.forEach(function(card){
+        if(card.charName === action.payload.charName){
+          card.charAC = action.payload.ac;
+        }
+      })
+      return{
+        ...state,
+        characterInfo: {...state.characterInfo,
+                          [action.payload.charName]: {
+                            ...state.characterInfo[action.payload.charName],
+                            ac: action.payload.ac
+                          }
+                        }
       }
     }
     case 'Order/ChangeCount' : {

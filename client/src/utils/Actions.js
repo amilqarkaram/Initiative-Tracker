@@ -42,16 +42,38 @@ function AddAndUpdateMonsterInfoCard(name, info){
         }
       }
     }
-    function AddCharacterCardAndDisplayInfoCard(name, initiative, info){
+    function AddCharacterCardAndDisplayInfoCard(name, initiative, info, _hp, _ac){
       return {
         type: 'Card/AddCharacterCardAndDisplayInfoCard',
         payload:
         {
           charName: name,
           charInitiative: initiative,
-          charInfo: info
+          charInfo: info,
+          hp: _hp,
+          ac: _ac
         }
         }
+    }
+    function AddHP(_charName, _hp){
+      return{
+        type: 'Card/AddHP',
+        payload: {
+          hp: _hp,
+          charName: _charName
+        }
+
+      }
+    }
+    function AddAC(_charName, _ac){
+      return{
+        type: 'Card/AddAC',
+        payload: {
+          ac: _ac,
+          charName: _charName
+        }
+
+      }
     }
     function RemoveInfoCard(){
       return {
@@ -93,4 +115,4 @@ function AddAndUpdateMonsterInfoCard(name, info){
 
 
 export default {UpdatePlayerInfoCard, UpdateMonsterInfoCard, AddAndUpdatePlayerInfoCard, AddAndUpdateMonsterInfoCard, AddCharacterCardAndDisplayInfoCard,
-RemoveInfoCard, RemoveCharacterCard, ChangeCount, IncrementCount, DecrementCount, DeleteAll};
+RemoveInfoCard, RemoveCharacterCard, ChangeCount, IncrementCount, DecrementCount, DeleteAll, AddHP, AddAC};

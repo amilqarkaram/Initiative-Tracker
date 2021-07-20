@@ -43,9 +43,9 @@ const state = store.getState();
   }
 }
 //add smaller initiative card and display it
-function AddInfo(charName,charInitiative, info = ""){
+function AddInfo(charName,charInitiative, info = "", _hp = "0", _ac = "0"){
 
-  store.dispatch(actions.AddCharacterCardAndDisplayInfoCard(charName, charInitiative, info))
+  store.dispatch(actions.AddCharacterCardAndDisplayInfoCard(charName, charInitiative, info, _hp, _ac))
 
 }
 
@@ -72,4 +72,11 @@ function ChangeCount(count = 0,type = null){
 function DeleteAll(){
   store.dispatch(actions.DeleteAll());
 }
-export default {AddAndDisplayInfoCard, DisplayInfoCard, AddInfo, DeleteInfo, ChangeCount, DeleteAll}
+
+function DispatchHP(_charName, _hp){
+  store.dispatch(actions.AddHP(_charName, _hp));
+}
+function DispatchAC(_charName, _ac){
+  store.dispatch(actions.AddAC(_charName, _ac));
+}
+export default {AddAndDisplayInfoCard, DisplayInfoCard, AddInfo, DeleteInfo, ChangeCount, DeleteAll, DispatchHP, DispatchAC}

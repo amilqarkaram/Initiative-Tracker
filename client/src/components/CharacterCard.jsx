@@ -2,7 +2,7 @@ import React from "react";
 import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
 import Cursor from "./Cursor";
-import HPBubble from "./HPBubble"
+import HPACBubble from "./HPACBubble"
 import TrashIcon from '@material-ui/icons/Delete';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import {useSelector} from 'react-redux'
@@ -45,11 +45,12 @@ function CharacterCard(props){
       style={{position:"absolute",right:"0",margin:"auto", top: "0", bottom:"30"}}
       color="black"
       fontSize="large"/> : ""}
-      <Fab style={{position:"absolute",right:"0",margin:"auto", top: "20", bottom:"0"}} onClick={handleTrashClick} className="addButton">
+      <Fab style={{position:"absolute",right:"0",margin:"auto", top: "20", bottom:"0", cursor: "pointer"}} onClick={handleTrashClick} className="addButton">
       <TrashIcon/>
       </Fab>
-      <HPBubble className="HPBubble" />
-      <HPBubble className="ACBubble" />
+      <HPACBubble/>
+      <div className="red"/>
+      <div className="blue" />
     </div>
   );
 }

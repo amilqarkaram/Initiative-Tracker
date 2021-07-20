@@ -16,7 +16,7 @@ function Monster(props) {
     marginTop: "30px"
   };
 
-  let info = useSelector(state => state.characterInfo[state.currentMonsterName]);
+  let info = useSelector(state => state.characterInfo[state.currentMonsterName].notes);
 
   console.log(info);
   return (
