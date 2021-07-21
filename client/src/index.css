@@ -93,51 +93,54 @@ button.backButton{
   right: 60vw;
 }
 .HPHeaderDiv{
-  position: relative;
-  left: 110%;
-  top: 1.5vh;
+  position: absolute;
   background-color: #FF6961;
   width: 50px;
   height: 50px;
   border-radius: 30%;
-  z-index: 1;
+  z-index: 10;
 }
 .HPHeader{
   position: absolute;
   left: 5px;
   top: 5px;
 }
-.blueHeader{
+.redHeaderBlock{
   width: 25px;
   height: 25px;
   background-color: #FF6961;
-  position: relative;
-  left: 79%;
-  top: 50%;
+  position: absolute;
+  z-index: 0;
+  left: 10%;
+  top: 25px;
 }
 .ACHeaderDiv{
-  position: relative;
-  left: 122.5%;
-  bottom: 5.4vh;
+  position: absolute;
   background-color: #95d1e8;
   width: 50px;
   height: 50px;
   border-radius: 30%;
-  z-index: 1;
+  margin-left: 12.5%;
+  z-index: 10;
 }
 .ACHeader{
   position: absolute;
   left: 5px;
   top: 5px;
 }
-.redHeader{
+.blueHeaderBlock{
   width: 20px;
   height: 20px;
   background-color: #95d1e8;
-  position: relative;
-  right: 25%;
-  bottom: 0%;
+  position: absolute;
+  left: 10%;
+  top: 0%;
   z-index: 0;
+}
+.HPACHeader{
+  position: relative;
+  left : 110%;
+  top: 10px;
 }
 /* Header Component */
 .innerHeader{

@@ -6,12 +6,12 @@ function DisplayInfoCard(characterName){
 
 const state = store.getState();
 
-  if (state.monsterNames.includes(characterName)) {
+  if (state.monsterNames?.includes(characterName)) {
     //this will render a monster
     store.dispatch(actions.UpdateMonsterInfoCard(characterName));
   }
   //edge case will o wisp
-  else if(characterName.substring(0,4) === "Will"){
+  else if(characterName?.substring(0,4) === "Will"){
 
     store.dispatch(actions.UpdateMonsterInfoCard("Will-o'-Wisp"));
 
@@ -79,4 +79,8 @@ function DispatchHP(_charName, _hp){
 function DispatchAC(_charName, _ac){
   store.dispatch(actions.AddAC(_charName, _ac));
 }
-export default {AddAndDisplayInfoCard, DisplayInfoCard, AddInfo, DeleteInfo, ChangeCount, DeleteAll, DispatchHP, DispatchAC}
+
+function RenderHPAC(){
+  store.dispatch(actions.SetHPACRender());
+}
+export default {AddAndDisplayInfoCard, DisplayInfoCard, AddInfo, DeleteInfo, ChangeCount, DeleteAll, DispatchHP, DispatchAC, RenderHPAC}

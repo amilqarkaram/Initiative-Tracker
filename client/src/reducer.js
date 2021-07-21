@@ -7,6 +7,7 @@ const initialState = {
   windowWidth: window.innerWidth,
   cards: [],
   count: 0,
+  renderHPAC: false
 }
 
 export default function appReducer(state = initialState, action){
@@ -105,14 +106,17 @@ export default function appReducer(state = initialState, action){
       });
       //sorted in ascending order by initiative
       filteredCards.sort(function(a, b){return b.charInitiative - a.charInitiative})
+      let renderHPAC = false;
+      if(filteredCards.length > 0) renderHPAC = true;
         return {
           ...state,
           cards: filteredCards,
-          count: 0
+          count: 0,
+          renderHPAC: renderHPAC
         }
       }
     }
-    case 'Card/AddHP':{
+    case 'HPAC/AddHP':{
       let filteredCards = [...state.cards];
       filteredCards.forEach(function(card){
         if(card.charName === action.payload.charName){
@@ -129,7 +133,7 @@ export default function appReducer(state = initialState, action){
                         }
       }
     }
-    case 'Card/AddAC':{
+    case 'HPAC/AddAC':{
       let filteredCards = [...state.cards];
       filteredCards.forEach(function(card){
         if(card.charName === action.payload.charName){
@@ -144,6 +148,12 @@ export default function appReducer(state = initialState, action){
                             ac: action.payload.ac
                           }
                         }
+      }
+    }
+    case 'HPAC/SetRender' : {
+      return{
+        ...state,
+        renderHPAC: true
       }
     }
     case 'Order/ChangeCount' : {
@@ -179,7 +189,8 @@ export default function appReducer(state = initialState, action){
       tempArr.length = 0;
       return{
         ...state,
-        cards: [...tempArr]
+        cards: [...tempArr],
+        renderHPAC: false
       }
     }
     default:{

@@ -57,7 +57,7 @@ function AddAndUpdateMonsterInfoCard(name, info){
     }
     function AddHP(_charName, _hp){
       return{
-        type: 'Card/AddHP',
+        type: 'HPAC/AddHP',
         payload: {
           hp: _hp,
           charName: _charName
@@ -67,12 +67,17 @@ function AddAndUpdateMonsterInfoCard(name, info){
     }
     function AddAC(_charName, _ac){
       return{
-        type: 'Card/AddAC',
+        type: 'HPAC/AddAC',
         payload: {
           ac: _ac,
           charName: _charName
         }
 
+      }
+    }
+    function SetHPACRender(){
+      return{
+        type: 'HPAC/SetRender'
       }
     }
     function RemoveInfoCard(){
@@ -115,4 +120,4 @@ function AddAndUpdateMonsterInfoCard(name, info){
 
 
 export default {UpdatePlayerInfoCard, UpdateMonsterInfoCard, AddAndUpdatePlayerInfoCard, AddAndUpdateMonsterInfoCard, AddCharacterCardAndDisplayInfoCard,
-RemoveInfoCard, RemoveCharacterCard, ChangeCount, IncrementCount, DecrementCount, DeleteAll, AddHP, AddAC};
+RemoveInfoCard, RemoveCharacterCard, ChangeCount, IncrementCount, DecrementCount, DeleteAll, AddHP, AddAC, SetHPACRender};

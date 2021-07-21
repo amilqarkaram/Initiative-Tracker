@@ -18,6 +18,9 @@ function CharacterCard(props){
     setState({index: props.index});
     console.log("character card rendered" );
   },[props.index]);
+  React.useEffect(function(){
+    console.log("oy")
+  },[])
   function handleTrashClick(){
     dispatchers.DeleteInfo(props.card.charName,props.card.charInitiative);
   }
@@ -48,7 +51,7 @@ function CharacterCard(props){
       <Fab style={{position:"absolute",right:"0",margin:"auto", top: "20", bottom:"0", cursor: "pointer"}} onClick={handleTrashClick} className="addButton">
       <TrashIcon/>
       </Fab>
-      <HPACBubble/>
+      <HPACBubble charName={props.card.charName}/>
       <div className="red"/>
       <div className="blue" />
     </div>

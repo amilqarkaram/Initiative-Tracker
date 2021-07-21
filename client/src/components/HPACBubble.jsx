@@ -23,7 +23,8 @@ function HPACBubble(props){
       restrictNumInput("ac",characterInfo[props.charName].ac);
       restrictNumInput("hp",characterInfo[props.charName].hp);
     }
-  },[])
+    dispatchers.RenderHPAC();
+  },[props.charName])
   function isProperLength(value){
     if(String(value).length > 3){
       return false;

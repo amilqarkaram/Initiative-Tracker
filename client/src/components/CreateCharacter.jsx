@@ -3,7 +3,7 @@ import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
 import axios from "axios"
 import DropdownMenu from "./Dropdown"
-import HPACBubble from "./HPACBubble"
+import HPACHeader from "./HPACHeader"
 import dispatchers from "../utils/dispatchers"
 function CreateCharacter(props){
 const [state,setState] = React.useState({
@@ -162,14 +162,7 @@ return(
   <AddIcon/>
   </Fab>
   <DropdownMenu handleDropdownClick={handleDropdownClick} searchItems={state.dropdownMonsters}/>
-  <div className="HPHeaderDiv">
-  <h2 className="HPHeader">HP</h2>
-  <div className="blueHeader" />
-  </div>
-  <div className="ACHeaderDiv">
-  <h2 className="ACHeader">AC</h2>
-  <div className="redHeader"/>
-  </div>
+  <HPACHeader />
   </div>
 );
 }

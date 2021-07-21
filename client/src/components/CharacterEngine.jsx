@@ -8,7 +8,6 @@ import {useSelector} from 'react-redux'
 function CharacterEngine(props){
 
 let { cards } = useSelector(state => state);
-
   return(
     <div id="engineContainer">
 
@@ -24,7 +23,7 @@ let { cards } = useSelector(state => state);
           return(
             <div className="characterCardSpacing" data-remove="hello">
 
-              <CharacterCard index={index} key={index} card={element}/>
+              <CharacterCard index={element.toString()} key={index} card={element}/>
 
             </div>
           )
