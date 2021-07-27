@@ -52,8 +52,6 @@ function CharacterCard(props){
       <TrashIcon/>
       </Fab>
       <HPACBubble charName={props.card.charName}/>
-      <div className="red"/>
-      <div className="blue" />
     </div>
   );
 }

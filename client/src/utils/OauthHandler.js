@@ -32,7 +32,7 @@ function handleGoogleSave(googleData, state){
         if(response.data !== "no-data"){
           dispatchers.DeleteAll();
           for(let i = 0; i < response.data.length; ++i){
-            dispatchers.AddInfo(response.data[i].charName, response.data[i].charInitiative, response.data[i].charInfo, response.data[i].charHP, response.data[i].charAC);
+            dispatchers.AddInfo(response.data[i].charName, response.data[i].charInitiative, response.data[i].charInfo, response.data[i].charHP, response.data[i].charAC, response.data[i].charDT);
           }
         }
       });

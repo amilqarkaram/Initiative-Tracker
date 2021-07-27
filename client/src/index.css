@@ -106,12 +106,12 @@ button.backButton{
   top: 5px;
 }
 .redHeaderBlock{
-  width: 25px;
+  width: 28px;
   height: 25px;
   background-color: #FF6961;
   position: absolute;
   z-index: 0;
-  left: 10%;
+  left: 9%;
   top: 25px;
 }
 .ACHeaderDiv{
@@ -129,13 +129,45 @@ button.backButton{
   top: 5px;
 }
 .blueHeaderBlock{
-  width: 20px;
+  width: 28px;
   height: 20px;
   background-color: #95d1e8;
   position: absolute;
-  left: 10%;
+  left: 9.7%;
+  margin-top: .1%;
+  z-index: 0;
+}
+.DTHeaderDiv{
+  position: absolute;
+  background-color: #77DD77;
+  width: 50px;
+  height: 50px;
+  border-radius: 30%;
+  margin-left: 24.5%;
+  z-index: 10;
+}
+.DTHeader{
+  position: absolute;
+  left: 5px;
+  top: 5px;
+}
+.greenHeaderBlock{
+  width: 28px;
+  height: 20px;
+  background-color: #77DD77;
+  position: absolute;
+  left: 22%;
   top: 0%;
   z-index: 0;
+}
+.blueHeaderBlockTwo{
+  width: 28px;
+  height: 25px;
+  background-color: #95d1e8;
+  position: absolute;
+  z-index: 0;
+  left: 21%;
+  top: 25px;
 }
 .HPACHeader{
   position: relative;
@@ -424,6 +456,18 @@ margin:auto;
   border-radius: 30%;
   z-index: 1;
 }
+.DTBubble{
+  background-color: #77DD77;
+  border-color: black;
+  width: 50px;
+  height: 9.5vh;
+  position: relative;
+  left: 88%;;
+  margin-left: 36%;
+  bottom: 187.5%;
+  border-radius: 30%;
+  z-index: 1;
+}
 .red{
   background-color: #FF6961;
   width: 25px;
@@ -439,6 +483,22 @@ margin:auto;
   height: 25px;
   position: absolute;
   left: 111%;
+  top: 2.5%;
+}
+.blueTwo{
+  background-color: #95d1e8;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  left: 121.5%;
+  top: 63%;
+}
+.green{
+  background-color: #77DD77;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  left: 121.5%;
   top: 2.5%;
 }
 .crescent{

@@ -43,9 +43,20 @@ const state = store.getState();
   }
 }
 //add smaller initiative card and display it
-function AddInfo(charName,charInitiative, info = "", _hp = "0", _ac = "0"){
-
-  store.dispatch(actions.AddCharacterCardAndDisplayInfoCard(charName, charInitiative, info, _hp, _ac))
+function AddInfo(charName,charInitiative, info = "", _hp = "0", _ac = "0", _dt = "0"){
+  const state = store.getState();
+  let number = 1;
+  let isDuplicate = false;
+  for(let i = 0; i < state.cards.length; ++i){
+      let cardCharName = state.cards[i].charName;
+      if(cardCharName === charName){
+        isDuplicate = true;
+        break;
+      }
+  }
+  if(!isDuplicate){
+    store.dispatch(actions.AddCharacterCardAndDisplayInfoCard(charName, charInitiative, info, _hp, _ac, _dt))
+  }
 
 }
 
@@ -79,8 +90,13 @@ function DispatchHP(_charName, _hp){
 function DispatchAC(_charName, _ac){
   store.dispatch(actions.AddAC(_charName, _ac));
 }
-
+function DispatchDT(_charName, _dt){
+  store.dispatch(actions.AddDT(_charName, _dt));
+}
 function RenderHPAC(){
   store.dispatch(actions.SetHPACRender());
 }
-export default {AddAndDisplayInfoCard, DisplayInfoCard, AddInfo, DeleteInfo, ChangeCount, DeleteAll, DispatchHP, DispatchAC, RenderHPAC}
+function SetWindowWidth(_windowWidth){
+  store.dispatch(actions.SetWindowWidth(_windowWidth))
+}
+export default {AddAndDisplayInfoCard, DisplayInfoCard, AddInfo, DeleteInfo, ChangeCount, DeleteAll, DispatchHP, DispatchAC, DispatchDT, RenderHPAC, SetWindowWidth}

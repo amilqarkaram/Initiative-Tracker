@@ -70,7 +70,8 @@ export default function appReducer(state = initialState, action){
       let charInfo = action.payload.charInfo;
       let charHP = action.payload.hp;
       let charAC = action.payload.ac;
-      tempArray.push({charName,charInitiative,charInfo, charHP, charAC});
+      let charDT = action.payload.dt;
+      tempArray.push({charName,charInitiative,charInfo, charHP, charAC, charDT});
       //sorted in ascending order by initiative
       tempArray.sort(function(a, b){return b.charInitiative - a.charInitiative})
       return{
@@ -78,11 +79,12 @@ export default function appReducer(state = initialState, action){
         cards: [...tempArray],
         count: 0,
         characterInfo: {...state.characterInfo,
-                          [action.payload.currentPlayerName]: {
-                            ...state.characterInfo[action.payload.currentPlayerName],
+                          [charName]: {
+                            ...state.characterInfo[charName],
                             notes: charInfo ? charInfo : "",
                             hp: charHP ? charHP : "0",
-                            ac: charAC ? charAC : "0"
+                            ac: charAC ? charAC : "0",
+                            dt: charDT ? charDT : "0"
                           }
                         }
             }
@@ -150,6 +152,23 @@ export default function appReducer(state = initialState, action){
                         }
       }
     }
+    case 'HPAC/AddDT':{
+      let filteredCards = [...state.cards];
+      filteredCards.forEach(function(card){
+        if(card.charName === action.payload.charName){
+          card.charDT = action.payload.dt;
+        }
+      })
+      return{
+        ...state,
+        characterInfo: {...state.characterInfo,
+                          [action.payload.charName]: {
+                            ...state.characterInfo[action.payload.charName],
+                            dt: action.payload.dt
+                          }
+                        }
+      }
+    }
     case 'HPAC/SetRender' : {
       return{
         ...state,
@@ -191,6 +210,12 @@ export default function appReducer(state = initialState, action){
         ...state,
         cards: [...tempArr],
         renderHPAC: false
+      }
+    }
+    case 'Window/SetWindowWidth' : {
+      return{
+        ...state,
+        windowWidth: action.payload.windowWidth
       }
     }
     default:{

@@ -10,18 +10,21 @@ import { useSelector } from 'react-redux'
 function HPACBubble(props){
   const [inputWidth, setInputWidth] = React.useState({
     "hpWidth": "17px",
-    "acWidth": "17px"
+    "acWidth": "17px",
+    "dtWidth": "17px"
   });
   const {characterInfo} = useSelector(state => state)
 
   React.useEffect(function(){
-    if(!characterInfo[props.charName]?.ac && !characterInfo[props.charName]?.hp){
+    if(!characterInfo[props.charName]?.ac && !characterInfo[props.charName]?.hp && !characterInfo[props.charName]?.dt){
       dispatchers.DispatchAC(props.charName, "0");
       dispatchers.DispatchHP(props.charName, "0");
+      dispatchers.DispatchDT(props.charName,"0");
     }
     else{
       restrictNumInput("ac",characterInfo[props.charName].ac);
       restrictNumInput("hp",characterInfo[props.charName].hp);
+      restrictNumInput("dt",characterInfo[props.charName].dt);
     }
     dispatchers.RenderHPAC();
   },[props.charName])
@@ -37,36 +40,81 @@ function HPACBubble(props){
       dispatchers.DispatchHP(props.charName, e.target.value);
       else if (type === "ac")
       dispatchers.DispatchAC(props.charName, e.target.value);
+      else if (type === "dt")
+      dispatchers.DispatchDT(props.charName, e.target.value)
 
       restrictNumInput(type, e.target.value);
     }
   }
   function upClick(type,e){
-    let tempNum = type === "hp" ? (Number(characterInfo[props.charName]?.hp) + 1) : (Number(characterInfo[props.charName]?.ac) + 1);
+    let tempNum = null;
+    switch(type){
+      case "hp":
+        tempNum = (Number(characterInfo[props.charName]?.hp) + 1);
+        break;
+      case "ac":
+        tempNum =(Number(characterInfo[props.charName]?.ac) + 1);
+        break;
+      case "dt":
+        tempNum = (Number(characterInfo[props.charName]?.dt) + 1);
+        break;
+      default:
+        tempNum = (Number(characterInfo[props.charName]?.hp) + 1);
+    }
     if(isProperLength(tempNum)){
       if(type === "hp")
       dispatchers.DispatchHP(props.charName, tempNum);
       else if (type === "ac")
       dispatchers.DispatchAC(props.charName, tempNum);
+      else if (type === "dt")
+      dispatchers.DispatchDT(props.charName, tempNum)
 
       restrictNumInput(type, tempNum);
     }
 
   }
   function downClick(type,e){
-    let tempNum = type === "hp" ? (Number(characterInfo[props.charName]?.hp) - 1) : (Number(characterInfo[props.charName]?.ac) - 1);
+    let tempNum = null;
+    switch(type){
+      case "hp":
+        tempNum = (Number(characterInfo[props.charName]?.hp) - 1);
+        break;
+      case "ac":
+        tempNum =(Number(characterInfo[props.charName]?.ac) - 1);
+        break;
+      case "dt":
+        tempNum = (Number(characterInfo[props.charName]?.dt) - 1);
+        break;
+      default:
+        tempNum = (Number(characterInfo[props.charName]?.hp) - 1);
+    }
     if(isProperLength(tempNum)){
       if(type === "hp")
       dispatchers.DispatchHP(props.charName,tempNum);
       else if (type === "ac")
       dispatchers.DispatchAC(props.charName,tempNum);
+      else if (type === "dt")
+      dispatchers.DispatchDT(props.charName, tempNum)
 
       restrictNumInput(type, tempNum);
     }
   }
   function restrictNumInput(type, num){
-    let propertyName = type === "hp" ? "hpWidth" : "acWidth";
-    let inputValueLength = type === "hp" ? String(num).length : String(num).length;
+    let propertyName = "";
+    switch(type){
+      case "hp":
+        propertyName = "hpWidth";
+        break;
+      case "ac":
+        propertyName = "acWidth"
+        break;
+      case "dt":
+        propertyName = "dtWidth"
+        break;
+      default:
+        propertyName = ""
+    }
+    let inputValueLength = String(num).length;
     switch(inputValueLength){
       case 1:
           setInputWidth(function(currentState){
@@ -116,8 +164,16 @@ function HPACBubble(props){
     <input value={characterInfo[props.charName]?.ac} onChange={(e)=>handleChange("ac",e)} style={{width: inputWidth["acWidth"]}} className= "inputStyle" min="1" max="24" step="1"  />
     <FontAwesomeIcon icon={faArrowAltCircleDown} onClick={(e)=> downClick("ac",e)} className="downArrow"/>
     </div>
+    <div className="DTBubble" >
+    <i class="far fa-arrow-alt-circle-up"></i>
+    <FontAwesomeIcon icon={faArrowAltCircleUp} onClick={(e)=> upClick("dt",e)} className="upArrow"/>
+    <input value={characterInfo[props.charName]?.dt} onChange={(e)=>handleChange("dt",e)} style={{width: inputWidth["dtWidth"]}} className= "inputStyle" min="1" max="24" step="1"  />
+    <FontAwesomeIcon icon={faArrowAltCircleDown} onClick={(e)=> downClick("dt",e)} className="downArrow"/>
+    </div>
     <div className="red"/>
     <div className="blue" />
+    <div className="blueTwo" />
+    <div className="green" />
     </>
   );
 }

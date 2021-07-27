@@ -19,9 +19,19 @@ function HPACHeader(){
 
       </div>
 
+      <div className="DTHeaderDiv">
+
+        <h2 className="DTHeader">DT</h2>
+
+      </div>
+
       <div className="redHeaderBlock"/>
 
       <div className="blueHeaderBlock" />
+
+      <div className="blueHeaderBlockTwo" />
+
+      <div className="greenHeaderBlock" />
 
     </div>
   )

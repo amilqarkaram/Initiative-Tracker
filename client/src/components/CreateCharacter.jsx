@@ -91,7 +91,6 @@ function handleChange(event){
   let savedArray = [];
   let savedLCArray = [];
   let numSearchItems = 4;
-  if(props.windowWidth > 641 && props.windowWidth < 1007){numSearchItems = 2}
   let lowerCaseMonsters = [];
   for(let i = 0;i<state.allMonsters.length;++i){
     lowerCaseMonsters.push(state.allMonsters[i].toLowerCase());
@@ -126,12 +125,23 @@ function handleClick(event){
     charName = input;
     check = false;
   }
-  for(let i =0;i < input.length;++i){
-    if(check && ((input.charCodeAt(i) >= 65 && input.charCodeAt(i) <= 122 ) || (input.charCodeAt(i) === 32) || (input.charCodeAt(i) === 44))){
-      charName = charName + input.charAt(i);
-    }
-    else if(input.charCodeAt(i) >= 48 && input.charCodeAt(i) <= 57){
-      charInitiative = charInitiative + input.charAt(i);
+  let inputArr = input.split(" ");
+  for(let i = 0; i < inputArr.length; ++i){
+    let inputStr = inputArr[i];
+      if(inputStr.charCodeAt(0) >= 48 && inputStr.charCodeAt(0) <= 57){
+        for(let k = 0; k < inputStr.length; ++k){
+          if(inputStr.charCodeAt(k) >= 48 && inputStr.charCodeAt(k) <= 57){
+            charInitiative = charInitiative + inputStr.charAt(k);
+          }
+        }
+        continue;
+      }
+      else {
+        for(let j = 0; j < inputStr.length; ++j){
+        if(check && inputStr.charCodeAt(j) !== 10){
+          charName = charName + inputStr.charAt(j);
+        }
+      }
     }
   }
   // passes input back to a function defined in the character engine

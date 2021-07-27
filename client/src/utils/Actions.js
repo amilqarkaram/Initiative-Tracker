@@ -42,7 +42,7 @@ function AddAndUpdateMonsterInfoCard(name, info){
         }
       }
     }
-    function AddCharacterCardAndDisplayInfoCard(name, initiative, info, _hp, _ac){
+    function AddCharacterCardAndDisplayInfoCard(name, initiative, info, _hp, _ac, _dt){
       return {
         type: 'Card/AddCharacterCardAndDisplayInfoCard',
         payload:
@@ -51,7 +51,8 @@ function AddAndUpdateMonsterInfoCard(name, info){
           charInitiative: initiative,
           charInfo: info,
           hp: _hp,
-          ac: _ac
+          ac: _ac,
+          dt: _dt
         }
         }
     }
@@ -70,6 +71,16 @@ function AddAndUpdateMonsterInfoCard(name, info){
         type: 'HPAC/AddAC',
         payload: {
           ac: _ac,
+          charName: _charName
+        }
+
+      }
+    }
+    function AddDT(_charName, _dt){
+      return{
+        type: 'HPAC/AddDT',
+        payload: {
+          dt: _dt,
           charName: _charName
         }
 
@@ -117,7 +128,15 @@ function AddAndUpdateMonsterInfoCard(name, info){
         type: 'Cards/DeleteAll'
       }
     }
+    function SetWindowWidth(_windowWidth){
+      return{
+        type: 'Window/SetWindowWidth',
+        payload: {
+          windowWidth: _windowWidth
+        }
+      }
+    }
 
 
 export default {UpdatePlayerInfoCard, UpdateMonsterInfoCard, AddAndUpdatePlayerInfoCard, AddAndUpdateMonsterInfoCard, AddCharacterCardAndDisplayInfoCard,
-RemoveInfoCard, RemoveCharacterCard, ChangeCount, IncrementCount, DecrementCount, DeleteAll, AddHP, AddAC, SetHPACRender};
+RemoveInfoCard, RemoveCharacterCard, ChangeCount, IncrementCount, DecrementCount, DeleteAll, AddHP, AddAC, AddDT, SetHPACRender, SetWindowWidth};
