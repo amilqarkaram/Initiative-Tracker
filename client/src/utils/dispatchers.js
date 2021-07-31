@@ -54,6 +54,7 @@ function AddInfo(charName,charInitiative, info = "", _hp = "0", _ac = "0", _dt =
         break;
       }
   }
+
   if(!isDuplicate){
     store.dispatch(actions.AddCharacterCardAndDisplayInfoCard(charName, charInitiative, info, _hp, _ac, _dt))
   }

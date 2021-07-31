@@ -84,7 +84,7 @@ export default function appReducer(state = initialState, action){
         characterInfo: {...state.characterInfo,
                           [charName]: {
                             ...state.characterInfo[charName],
-                            notes: charInfo ? charInfo : "",
+                            notes: state.characterInfo[charName]?.notes ? state.characterInfo[charName].notes : charInfo,
                             hp: charHP ? charHP : "0",
                             ac: charAC ? charAC : "0",
                             dt: charDT ? charDT : "0"

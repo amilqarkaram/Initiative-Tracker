@@ -137,6 +137,9 @@ function handleClick(event){
         continue;
       }
       else {
+        if(i > 0){
+          charName = charName + " ";
+        }
         for(let j = 0; j < inputStr.length; ++j){
         if(check && inputStr.charCodeAt(j) !== 10){
           charName = charName + inputStr.charAt(j);
