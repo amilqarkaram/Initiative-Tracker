@@ -7,7 +7,10 @@ const initialState = {
   windowWidth: window.innerWidth,
   cards: [],
   count: 0,
-  renderHPAC: false
+  renderHPAC: false,
+  HPHeader: "HP",
+  ACHeader: "AC",
+  DTHeader: "DT"
 }
 
 export default function appReducer(state = initialState, action){

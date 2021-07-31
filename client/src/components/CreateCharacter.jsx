@@ -172,7 +172,7 @@ return(
   <AddIcon/>
   </Fab>
   <DropdownMenu handleDropdownClick={handleDropdownClick} searchItems={state.dropdownMonsters}/>
-  <HPACHeader />
+  <HPACHeader/>
   </div>
 );
 }

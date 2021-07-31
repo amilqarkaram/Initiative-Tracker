@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-function HPACHeader(){
+function HPACHeader(props){
   const { renderHPAC } = useSelector(state => state);
   if(renderHPAC){
   return(
